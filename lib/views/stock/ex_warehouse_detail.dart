@@ -923,7 +923,15 @@ class _ExWarehouseDetailState extends State<ExWarehouseDetail> {
                               }else{
                                 ToastUtil.showInfo('无条码信息，输入失败');
                               }
+                            }else{
+                              setState(() {
+                                this.hobby[checkData][checkDataChild]["value"]
+                                ["label"] = _FNumber;
+                                this.hobby[checkData][checkDataChild]['value']
+                                ["value"] = _FNumber;
+                              });
                             }
+                            this.checkItem = "";
                           });
                         },
                         child: Text(
