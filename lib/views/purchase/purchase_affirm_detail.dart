@@ -463,8 +463,8 @@ class _PurchaseAffirmDetailState extends State<PurchaseAffirmDetail> {
                 barcodeData,
                 barcodeData[0][10],
                 barcodeData[0][11],
-                barcodeData[0][12],
-                barcodeData[0][13],
+                barcodeData[0][12].substring(0, 10),
+                barcodeData[0][13].substring(0, 10),
                 barcodeData[0][14],
                 barcodeData[0][7]);
             print("ChannelPage: $event");
@@ -526,8 +526,8 @@ class _PurchaseAffirmDetailState extends State<PurchaseAffirmDetail> {
       } else {
         barCodeScan = scanCode;
       }
-      var barcodeNum = scanCode[4];
-      var residue = double.parse(scanCode[4]);
+      var barcodeNum = scanCode[3];
+      var residue = double.parse(scanCode[3]);
       var hobbyIndex = 0;
       var errorTitle = "";
       for (var element in hobby) {
@@ -539,8 +539,7 @@ class _PurchaseAffirmDetailState extends State<PurchaseAffirmDetail> {
             if (element[0]['value']['barcode'].indexOf(code) == -1) {
               //判断是否启用保质期
               if (!element[11]['isHide']) {
-                print(element[11]['value']['value'] != fProduceDate &&
-                    element[12]['value']['value'] != fExpiryDate);
+
                 if (element[11]['value']['value'] == fProduceDate &&
                     element[12]['value']['value'] == fExpiryDate) {
                   errorTitle = "";
@@ -689,6 +688,11 @@ class _PurchaseAffirmDetailState extends State<PurchaseAffirmDetail> {
             if (element[0]['value']['barcode'].indexOf(code) == -1) {
               //判断是否启用保质期
               if (!element[11]['isHide']) {
+                print(111111111111111);
+                print(element[11]['value']['value']);
+                print(fExpiryDate);
+                print(element[12]['value']['value']);
+                print(fExpiryDate);
                 print(element[11]['value']['value'] != fProduceDate &&
                     element[12]['value']['value'] != fExpiryDate);
                 if (element[11]['value']['value'] == fProduceDate &&

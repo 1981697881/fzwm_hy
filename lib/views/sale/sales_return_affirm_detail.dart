@@ -407,7 +407,7 @@ class _SalesReturnAffirmDetailState extends State<SalesReturnAffirmDetail> {
           if (msg == "") {
             _code = event;
             this.getMaterialList(
-                barcodeData, barcodeData[0][10], barcodeData[0][11], barcodeData[0][12], barcodeData[0][13], barcodeData[0][14], barcodeData[0][7]);
+                barcodeData, barcodeData[0][10], barcodeData[0][11], barcodeData[0][12].substring(0, 10), barcodeData[0][13].substring(0, 10), barcodeData[0][14], barcodeData[0][7]);
             print("ChannelPage: $event");
           } else {
             ToastUtil.showInfo(msg);
@@ -450,7 +450,7 @@ class _SalesReturnAffirmDetailState extends State<SalesReturnAffirmDetail> {
       }else{
         barCodeScan = scanCode;
       }
-      var barcodeNum = scanCode[4];
+      var barcodeNum = scanCode[3];
       var errorTitle = "";
       for (var element in hobby) {
         var residue = 0.0;

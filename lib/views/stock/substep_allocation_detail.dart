@@ -398,7 +398,7 @@ class _AllocationAffirmDetailState extends State<SubstepAllocationDetail> {
         barCodeScan = scanCode;
         barCodeScan.add(barCodeScan[4]);
       }
-      var barcodeNum = scanCode[4];
+      var barcodeNum = scanCode[3];
       for (var element in hobby) {
         var residue = 0.0;
         //判断是否启用批号

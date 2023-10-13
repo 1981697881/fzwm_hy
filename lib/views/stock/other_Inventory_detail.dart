@@ -311,7 +311,7 @@ class _OtherInventoryDetailState extends State<OtherInventoryDetail> {
             "title": "盘点数量",
             "name": "FCountQty",
             "isHide": false,
-            "value": {"label": scanCode[4].toString(), "value": scanCode[4].toString()}
+            "value": {"label": scanCode[3].toString(), "value": scanCode[3].toString()}
           });
           arr.add({
             "title": "仓库",

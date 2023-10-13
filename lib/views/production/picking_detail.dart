@@ -491,7 +491,7 @@ class _PickingDetailState extends State<PickingDetail> {
           if (msg == "") {
             _code = event;
             this.getMaterialList(
-                barcodeData, barcodeData[0][10], barcodeData[0][11], barcodeData[0][12], barcodeData[0][13], barcodeData[0][14]);
+                barcodeData, barcodeData[0][10], barcodeData[0][11], barcodeData[0][12].substring(0, 10), barcodeData[0][13].substring(0, 10), barcodeData[0][14]);
             print("ChannelPage: $event");
           } else {
             ToastUtil.showInfo(msg);
@@ -541,7 +541,7 @@ class _PickingDetailState extends State<PickingDetail> {
       if(fBatchNo == null && fBatchNo==''){
         fBatchNo = scanCode[1];
       }
-      var barcodeNum = scanCode[4];
+      var barcodeNum = scanCode[3];
       for (var element in hobby) {
         var residue = 0.0;
         //判断是否启用批号
