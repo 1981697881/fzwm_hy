@@ -1834,7 +1834,7 @@ class _PurchaseWarehousingDetailState extends State<PurchaseWarehousingDetail> {
               "FInStockEntry_Link_FSTableName": "T_PUR_ReceiveEntry",
               "FInStockEntry_Link_FSBillId": orderDate[hobbyIndex][14],
               "FInStockEntry_Link_FSId": orderDate[hobbyIndex][4],
-              "FInStockEntry_Link_FBaseUnitQty": element[3]['value']['value'],
+              "FDetailEntity_Link_FBaseUnitQty": element[3]['value']['value'],
               "FInStockEntry_Link_FStockBaseQty": element[3]['value']['value']
             }
           ];

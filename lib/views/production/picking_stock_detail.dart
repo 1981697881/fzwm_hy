@@ -213,8 +213,7 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
     userMap['FilterString'] = "FBillNo='$fBillNo'";
     userMap['FormId'] = 'PRD_PickMtrl';
     userMap['OrderString'] = 'FMaterialId.FNumber ASC';
-    userMap['FieldKeys'] =
-    'FStockId.FNumber,FStockId.FName,FStockOrgId.FNumber';
+    userMap['FieldKeys'] = 'FStockId.FNumber,FStockId.FName,FStockOrgId.FNumber';
     Map<String, dynamic> stockMap = Map();
     stockMap['data'] = userMap;
     String stockRes = await CurrencyEntity.polling(stockMap);
@@ -223,20 +222,14 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
     if(stockFlex.length>0) {
       Map<String, dynamic> stockMap = Map();
       stockMap['FormId'] = 'BD_STOCK';
-      stockMap['FieldKeys'] =
-      'FStockID,FName,FNumber,FIsOpenLocation,FFlexNumber';
-      stockMap['FilterString'] = "FNumber = '" +
-          stockFlex[0][0] +
-          "' and FUseOrgId.FNumber = '" +
-          stockFlex[0][2] +
-          "'";
+      stockMap['FieldKeys'] = 'FStockID,FName,FNumber,FIsOpenLocation,FFlexNumber';
+      stockMap['FilterString'] = "FNumber = '" + stockFlex[0][0] + "' and FUseOrgId.FNumber = '" + stockFlex[0][2] + "'";
       Map<String, dynamic> stockDataMap = Map();
       stockDataMap['data'] = stockMap;
       String res = await CurrencyEntity.polling(stockDataMap);
       var stockRes = jsonDecode(res);
       if (stockRes.length > 0) {
-        userMap['FieldKeys'] =
-        'FBillNo,FPrdOrgId.FNumber,FPrdOrgId.FName,FDate,FEntity_FEntryId,FMaterialId.FNumber,FMaterialId.FName,FMaterialId.FSpecification,FStockOrgId.FNumber,FStockOrgId.FName,FUnitId.FNumber,FUnitId.FName,FAppQty,FSrcBillNo,FID,FMaterialId.FIsBatchManage,FStockId.FNumber,FStockId.FName,FStockUnitID.FNumber,FActualQty,FOwnerId.FNumber,FDocumentStatus,FProduceDate,FExpiryDate,FMaterialId.FIsKFPeriod,FStockID.FIsOpenLocation,FStockLocID.FF100003,FLot.FNumber';
+        userMap['FieldKeys'] = 'FBillNo,FPrdOrgId.FNumber,FPrdOrgId.FName,FDate,FEntity_FEntryId,FMaterialId.FNumber,FMaterialId.FName,FMaterialId.FSpecification,FStockOrgId.FNumber,FStockOrgId.FName,FUnitId.FNumber,FUnitId.FName,FAppQty,FSrcBillNo,FID,FMaterialId.FIsBatchManage,FStockId.FNumber,FStockId.FName,FStockUnitID.FNumber,FActualQty,FOwnerId.FNumber,FDocumentStatus,FProduceDate,FExpiryDate,FMaterialId.FIsKFPeriod,FStockID.FIsOpenLocation,FStockLocId.'+stockRes[0][4] +'.FName,FLot.FNumber,FEntrySrcInterId,FEntrySrcEnteryId';
         Map<String, dynamic> dataMap = Map();
         dataMap['data'] = userMap;
         order = await CurrencyEntity.polling(dataMap);
@@ -342,12 +335,12 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
               "isHide": true,
               "value": {"label": value[18], "value": value[18]}
             });
-            arr.add({
-              "title": "应发数量",
-              "name": "",
-              "isHide": false,
-              "value": {"label": value[12], "value": value[12]}
-            });
+              arr.add({
+                "title": "应发数量",
+                "name": "",
+                "isHide": false,
+                "value": {"label": value[12], "value": value[12]}
+              });
             arr.add({
               "title": "最后扫描数量",
               "name": "FLastQty",
@@ -1077,7 +1070,7 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
       List<Widget> comList = [];
       for (int j = 0; j < this.hobby[i].length; j++) {
         if (!this.hobby[i][j]['isHide']) {
-          /*if (j == 3 || j==5) {
+          if (j == 3 ) { /*|| j==5*/
             comList.add(
               Column(children: [
                 Container(
@@ -1115,7 +1108,7 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
                 divider,
               ]),
             );
-          } else
+          }/* else
           if (j == 6) {
             comList.add(
               Visibility(
@@ -1208,7 +1201,7 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
                 divider,
               ]),
             );
-          } else*/ if (j == 7) {
+          }*/ else if (j == 7) {
             comList.add(
               Column(children: [
                 Container(
@@ -1315,11 +1308,7 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
                           Navigator.pop(context);
                           setState(() {
                             if (checkItem == "FLastQty") {
-                              if (this
-                                      .hobby[checkData][0]['value']
-                                          ['kingDeeCode']
-                                      .length >
-                                  0) {
+                              if (this.hobby[checkData][0]['value']['kingDeeCode'].length >0) {
                                 var kingDeeCode = this
                                     .hobby[checkData][0]['value']['kingDeeCode']
                                         [this
@@ -1350,16 +1339,19 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
                                     ["label"] = _FNumber;
                                 this.hobby[checkData][checkDataChild]['value']
                                     ["value"] = _FNumber;
-                                this.hobby[checkData][0]['value']['kingDeeCode']
-                                    [this
-                                            .hobby[checkData][0]['value']
-                                                ['kingDeeCode']
-                                            .length -
-                                        1] = kingDeeCode[0] + "-" + _FNumber;
+                                this.hobby[checkData][0]['value']['kingDeeCode'][this.hobby[checkData][0]['value']['kingDeeCode'].length -1] = kingDeeCode[0] + "-" + _FNumber;
                                 //}
                               } else {
                                 ToastUtil.showInfo('无条码信息，输入失败');
                               }
+                            }else if(checkItem == "FNumber"){
+                              setState(() {
+                                this.hobby[checkData][checkDataChild]["value"]
+                                ["label"] = _FNumber;
+                                this.hobby[checkData][checkDataChild]['value']
+                                ["value"] = _FNumber;
+                                this.hobby[checkData][0]['value']['kingDeeCode'] = [];
+                              });
                             }else{
                               setState(() {
                                 this.hobby[checkData][checkDataChild]["value"]
@@ -1428,10 +1420,35 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
       Model['FID'] = orderDate[0][14];
       var FEntity = [];
       var hobbyIndex = 0;
-      this.hobby.forEach((element) {
+      var filterFId = [];
+      var pickNum = 0.0;
+      var filterNum = 0.0;
+      for (var element in this.hobby) {
         print(element[3]['value']['value']);
         print(element[9]['value']['value']);
-        if (element[3]['value']['value'] != '0' && double.parse(element[3]['value']['value']) >= element[9]['value']['value']) {
+        if (element[3]['value']['value'] != '0' && double.parse(element[3]['value']['value']) <= element[9]['value']['value']) {
+          print(orderDate[hobbyIndex][28]);
+          print(orderDate[hobbyIndex][29]);
+          if(filterFId.indexOf(orderDate[hobbyIndex][28].toString() + '-' + orderDate[hobbyIndex][29].toString())==-1){
+            filterFId.add(orderDate[hobbyIndex][28].toString() + '-' + orderDate[hobbyIndex][29].toString());
+            Map<String, dynamic> pickingMap = Map();
+            pickingMap['FilterString'] ="FID = " + orderDate[hobbyIndex][28].toString() + " and FEntity_FEntryID = " + orderDate[hobbyIndex][29].toString();
+            pickingMap['FormId'] = 'PRD_PPBOM';
+            pickingMap['FieldKeys'] = 'FNoPickedQty';
+            Map<String, dynamic> pickingOrderMap = Map();
+            pickingOrderMap['data'] = pickingMap;
+            String pickingRes = await CurrencyEntity.polling(pickingOrderMap);
+            var pickingData = jsonDecode(pickingRes);
+            if (pickingData.length > 0) {
+              filterNum = pickingData[0][0];
+            }
+          }else{
+            pickNum = pickNum + int.parse(element[3]['value']['value']);
+          }
+          if(pickNum > filterNum){
+            ToastUtil.showInfo("物料:'"+element[0]['value']['label']+"',领料数量已超出");
+            break;
+          }
           Map<String, dynamic> FEntityItem = Map();
           FEntityItem['FEntryID'] = orderDate[hobbyIndex][4];
           FEntityItem['FBillType'] = {"FNumber": "SCLLD01_SYS"};
@@ -1448,7 +1465,7 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
           FEntity.add(FEntityItem);
         }
         hobbyIndex++;
-      });
+      }
       if (FEntity.length == 0) {
         this.isSubmit = false;
         ToastUtil.showInfo('数量为空');
@@ -1463,6 +1480,10 @@ class _PickingStockDetailState extends State<PickingStockDetail> {
       orderMap['Model'] = Model;
       dataMap['data'] = orderMap;
       print(jsonEncode(dataMap));
+
+      this.isSubmit = false;
+      return;
+
       if (orderDate[0][orderDate[0].length - 1] == "B") {
         Map<String, dynamic> submitMap = Map();
         submitMap = {

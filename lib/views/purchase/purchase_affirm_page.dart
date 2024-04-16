@@ -91,7 +91,7 @@ class _PurchaseAffirmPageState extends State<PurchaseAffirmPage> {
     }else{
       if (this.keyWord != '') {
         userMap['FilterString'] =/*and FInStockQty>0*/
-        "FBillNo like '%"+keyWord+"%'  and FDocumentStatus in ('A','B','D') ";
+        "FBillNo like '%"+keyWord+"%'";
       }else{
         userMap['FilterString'] =/*and FInStockQty>0*/ 
         "FDocumentStatus in ('A','B','D') and FDate>= '$startDate' and FDate <= '$endDate'";
